@@ -1,6 +1,6 @@
 /// <reference path='../_references.ts' />
 
-class AlbumDirective implements ng.IDirective {
+class AlbumListDirective implements ng.IDirective {
 
     restrict = 'E';
 
@@ -24,11 +24,10 @@ class AlbumDirective implements ng.IDirective {
         scope.albums = this.dataService.albums.filter(a => a.artistId == artistId);
     };
 
-    constructor(private dataService: DataService) {
-    }
+    constructor(private dataService: DataService) { }
 }
 
 angular.module('econTutorial')
     .directive('albumList', ['DataService', (DataService) => {
-        return new AlbumDirective(DataService);
+        return new AlbumListDirective(DataService);
     }]);
