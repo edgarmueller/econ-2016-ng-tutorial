@@ -9,3 +9,4 @@
 /// <reference path='artist/artist.model.ts' />
 /// <reference path='album/album.model.ts' />
 /// <reference path='album/album-list.directive.ts' />
+//# sourceMappingURL=_references.js.map

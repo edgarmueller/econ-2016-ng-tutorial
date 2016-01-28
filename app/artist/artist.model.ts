@@ -2,6 +2,6 @@
 
 class Artist {
 
-    constructor(public id: number, public name: String) { }
+    constructor(public name: String, public id?: number) { }
 
 }

@@ -3,11 +3,11 @@
 class DataService {
 
     public artists: [Artist] = [
-        new Artist(0, "Amy Winehouse"),
-        new Artist(1, "Portishead"),
-        new Artist(2, "The Velvet Underground"),
-        new Artist(3, "Roxy Music"),
-        new Artist(4, "The Doors")
+        new Artist("Amy Winehouse", 0),
+        new Artist("Portishead", 1),
+        new Artist("The Velvet Underground", 2),
+        new Artist("Roxy Music", 3),
+        new Artist("The Doors", 4)
         
     ];
     
