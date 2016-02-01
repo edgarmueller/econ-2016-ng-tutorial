@@ -1,12 +1,11 @@
-/// <reference path='../_references.ts' />
 var ArtistListDirective = (function () {
-    function ArtistListDirective(dataService) {
+    function ArtistListDirective(repo) {
         var _this = this;
-        this.dataService = dataService;
+        this.repo = repo;
         this.restrict = 'E';
         this.template = "<div ng-repeat='artist in artists'>\n      <li>{{artist.name}}</li>\n      <h2>Albums</h2>\n\t  <album-list artist-id=\"artist.id\"></album-list>\n    </div>";
         this.link = function (scope, element, attributes) {
-            scope.artists = _this.dataService.artists;
+            scope.artists = _this.repo.all();
         };
     }
     return ArtistListDirective;

@@ -1,5 +1,7 @@
 module.exports = function(grunt) {
 
+    // TODO: let stefan review this
+
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -165,18 +167,11 @@ module.exports = function(grunt) {
     grunt.registerTask('dist', [
         //'clean:dist',
         'ts:dist'
-        //'concat:dist'
-    ]);
-
-    // Build example applications
-    grunt.registerTask('app', [
-        'dist',
-        'copy:app'
     ]);
 
     // Test unit and e2e tests
     grunt.registerTask('test', [
-     //   'app',
+        'dist',
         'ts:test',
         'karma',
         'connect'

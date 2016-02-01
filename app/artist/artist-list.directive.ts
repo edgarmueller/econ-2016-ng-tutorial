@@ -11,10 +11,10 @@ class ArtistListDirective implements ng.IDirective {
     </div>`;
 
     link = (scope, element, attributes) => {
-        scope.artists = this.dataService.artists;
+        scope.artists = this.repo.all();
     };
 
-    constructor(private dataService: DataService) {
+    constructor(private repo: ArtistRepository) {
     }
 }
 

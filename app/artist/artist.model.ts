@@ -1,7 +1,7 @@
 /// <reference path='../_references.ts' />
 
-class Artist {
+class Artist implements HasId {
 
-    constructor(public name: String, public id?: number) { }
+    constructor(public name: string, public id?: number) { }
 
 }

@@ -21,10 +21,10 @@ class AlbumListDirective implements ng.IDirective {
 
     link = (scope, element, attributes) => {
         let artistId = scope.artistId;
-        scope.albums = this.dataService.albums.filter(a => a.artistId == artistId);
+        scope.albums = this.repo.findById(artistId);
     };
 
-    constructor(private dataService: DataService) { }
+    constructor(private repo: AlbumRepository) { }
 }
 
 angular.module('econTutorial')
