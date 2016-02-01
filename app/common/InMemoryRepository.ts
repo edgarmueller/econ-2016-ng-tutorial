@@ -5,7 +5,9 @@ abstract class InMemoryRepository<ENTITY extends HasId> implements IRepository<E
     private entities;
     private currentId = 0;
 
-    constructor() {
+    static $inject = ['$q'];
+
+    constructor(private $q: ng.IQService) {
         this.entities = [];
     }
 
@@ -48,12 +50,14 @@ abstract class InMemoryRepository<ENTITY extends HasId> implements IRepository<E
         this.entities = [];
     }
 
-    all(): ENTITY[] {
+    all(): ng.IPromise<ENTITY[]> {
+        let deferred = this.$q.defer();
         let result = [];
         for (let id in this.entities) {
             result.push(this.entities[id]);
         }
-        return result;
+        deferred.resolve(result);
+        return deferred.promise;
     }
 
     update(entity: ENTITY): void {
@@ -66,8 +70,10 @@ abstract class InMemoryRepository<ENTITY extends HasId> implements IRepository<E
         }
     }
 
-    findById(id: number): ENTITY {
-        return this.entities.find(e => e.id == id);
+    findById(id: number): ng.IPromise<ENTITY> {
+        let deferred = this.$q.defer();
+        deferred.resolve(this.entities.find(e => e.id == id));
+        return deferred.promise;
     }
 
     create(entity: ENTITY):void {
@@ -76,18 +82,23 @@ abstract class InMemoryRepository<ENTITY extends HasId> implements IRepository<E
         this.currentId += 1;
     }
 
-    removeById(id: number): boolean {
+    removeById(id: number): ng.IPromise<boolean> {
+        let deferred = this.$q.defer();
         let foundEntity = this.findById(id);
         if (foundEntity == undefined) {
-            return false;
+            deferred.resolve(false);
         } else {
             let index = this.entities.indexOf(foundEntity);
             this.entities.splice(index, 1);
-            return true;
+            deferred.resolve(true);
         }
+
+        return deferred.promise;
     }
 
-    filterByName(name: string): ENTITY[] {
-        return this.all().filter(e => { return e.name.indexOf(name) >  -1 });
+    filterByName(name: string): ng.IPromise<ENTITY[]> {
+        let deferred = this.$q.defer();
+        deferred.resolve(this.all().then(result => result.filter(e => { return e.name.indexOf(name) >  -1 })));
+        return deferred.promise;
     }
 }

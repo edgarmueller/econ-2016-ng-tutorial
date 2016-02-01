@@ -6,9 +6,9 @@ interface HasId {
 }
 
 interface IRepository<T extends HasId> {
-    all(): T[]
+    all(): ng.IPromise<T[]>
     update(t: T): void
-    findById(id: number): T
+    findById(id: number): ng.IPromise<T>
     create(t: T): void
-    removeById(id: number): boolean
+    removeById(id: number): ng.IPromise<boolean>
 }

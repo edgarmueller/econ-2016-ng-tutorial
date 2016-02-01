@@ -14,28 +14,42 @@ describe('The Artist repository', () => {
 
     it("should support creating new artists", () => {
         artistRepo.create(amy);
-        expect(artistRepo.all().length).toBe(1);
+        artistRepo.all().then((result) =>
+            expect(result.length).toBe(1)
+        );
     });
 
     it("should support finding artists by their ID", () => {
         artistRepo.create(amy);
-        expect(artistRepo.findById(0)).toBeDefined();
-        expect(artistRepo.findById(1)).toBeUndefined();
+        artistRepo.findById(0).then((result) => {
+            expect(result).toBeDefined();
+        });
+        artistRepo.findById(1).then((result) => {
+            expect(result).toBeUndefined()
+        });
     });
 
     it("should support updating artists", () => {
         artistRepo.create(amy);
-        let a = artistRepo.findById(0);
-        a.name = "Amy Jade Winehouse";
-        artistRepo.update(a);
-        expect(artistRepo.findById(0).name).toBe("Amy Jade Winehouse");
+        let promise1 = artistRepo.findById(0);
+        var promise2;
+        promise1.then((a) => {
+            a.name = "Amy Jade Winehouse";
+            artistRepo.update(a);
+            promise2 = artistRepo.findById(0);
+            promise2.then((result) => {
+                expect(result.name).toBe("Amy Jade Winehouse");
+            });
+        });
     });
 
 
     it("should allow removing artists by their ID", () => {
         artistRepo.create(amy);
         expect(artistRepo.removeById(0)).toBeTruthy();
-        expect(artistRepo.all().length).toBe(0);
+        artistRepo.all().then((result) => {
+            expect(result.length).toBe(0)
+        });
     });
 
     it("should allow filtering artists by part of their name", () => {
@@ -45,7 +59,9 @@ describe('The Artist repository', () => {
         artistRepo.create(new Artist("The Strokes"));
         artistRepo.create(new Artist("The Beatles"));
         artistRepo.create(new Artist("Miley Cyrus"));
-        expect(artistRepo.filterByName("The").length).toBe(4);
+        artistRepo.filterByName("The").then((filtered) => {
+            expect(filtered.length).toBe(4);
+        });
     });
 });
 

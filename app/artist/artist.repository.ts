@@ -4,4 +4,4 @@ class ArtistRepository extends InMemoryRepository<Artist> {
 
 }
 
-angular.module('econTutorial').service('ArtistRepository', ArtistRepository);
+//angular.module('econTutorial').service('ArtistRepository', ArtistRepository);

@@ -100,7 +100,9 @@ describe('The Album repository', () => {
 
     it("should support creating new albums", () => {
         albumRepo.create(backToBlack);
-        expect(albumRepo.all().length).toBe(1);
+        albumRepo.all().then((result) => {
+           expect(result.length).toBe(1);
+        });
     });
 
 });

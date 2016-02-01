@@ -8,6 +8,7 @@
 /// <reference path='artist/artist-list.directive.ts' />
 /// <reference path='artist/artist.model.ts' />
 /// <reference path='artist/artist.repository.ts' />
+/// <reference path='artist/artist.resource.ts' />
 /// <reference path='album/album.model.ts' />
 /// <reference path='album/album-list.directive.ts' />
 /// <reference path='album/album.repository.ts' />

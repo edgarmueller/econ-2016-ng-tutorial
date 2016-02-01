@@ -2,3 +2,4 @@
 
 class AlbumRepository extends InMemoryRepository<Album> { }
 angular.module('econTutorial').service('AlbumRepository', AlbumRepository);
+
