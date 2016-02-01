@@ -88,8 +88,6 @@ abstract class InMemoryRepository<ENTITY extends HasId> implements IRepository<E
     }
 
     filterByName(name: string): ENTITY[] {
-        // TODO
-        return this.entities;
-        // TODO: SOLUTION (remove me)
+        return this.all().filter(e => { return e.name.indexOf(name) >  -1 });
     }
 }

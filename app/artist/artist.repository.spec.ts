@@ -24,19 +24,17 @@ describe('The Artist repository', () => {
     });
 
     it("should support updating artists", () => {
-        // FIXME
         artistRepo.create(amy);
         let a = artistRepo.findById(0);
         a.name = "Amy Jade Winehouse";
-        artistRepo.update(amy);
+        artistRepo.update(a);
         expect(artistRepo.findById(0).name).toBe("Amy Jade Winehouse");
     });
 
 
     it("should allow removing artists by their ID", () => {
-        // FIXME
         artistRepo.create(amy);
-        expect(artistRepo.removeById(0)).toBeFalsy();
+        expect(artistRepo.removeById(0)).toBeTruthy();
         expect(artistRepo.all().length).toBe(0);
     });
 
