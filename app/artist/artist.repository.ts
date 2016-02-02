@@ -3,11 +3,11 @@
 class ArtistRepository extends InMemoryRepository<Artist> {
 
     fillWithSampleData() {
-        this.create(new Artist("Amy Winehouse",          "images/artists/winehouse.jpg"));
-        this.create(new Artist("Portishead",             "images/artists/portishead"));
-        this.create(new Artist("The Velvet Underground", "images/artists/the-velvet-underground.jpg"));
-        this.create(new Artist("Roxy Music",             "images/artists/roxy-music.jpg"));
-        this.create(new Artist("The Doors",              "images/artists/the-doors.jpg"));
+        this.create(new Artist("Amy Winehouse",          "app/images/artist/winehouse.jpg"));
+        this.create(new Artist("Portishead",             "app/images/artist/portishead.jpg"));
+        this.create(new Artist("The Velvet Underground", "app/images/artist/the-velvet-underground.jpg"));
+        this.create(new Artist("Roxy Music",             "app/images/artist/roxy-music.jpg"));
+        this.create(new Artist("The Doors",              "app/images/artist/the-doors.jpg"));
     }
 
 }
