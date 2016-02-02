@@ -4,11 +4,8 @@ class ArtistListDirective implements ng.IDirective {
 
     restrict = 'E';
 
-    template = `<div ng-repeat='artist in artists'>
-      <li>{{artist.name}}</li>
-      <h2>Albums</h2>
-	  <album-list artist-id="artist.id"></album-list>
-    </div>`;
+    // TODO: exercise 2
+    template = `???`;
 
     link = (scope, element, attributes) => {
         scope.artists = this.repo.all();
@@ -19,6 +16,6 @@ class ArtistListDirective implements ng.IDirective {
 }
 
 angular.module('econTutorial')
-    .directive('artistList', ['DataService', (DataService) => {
-        return new ArtistListDirective(DataService);
+    .directive('artistList', ['ArtistRepository', (ArtistRepository) => {
+        return new ArtistListDirective(ArtistRepository);
     }]);

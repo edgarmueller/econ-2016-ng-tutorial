@@ -2,6 +2,8 @@
   "name": "econ-2016-ng-tutorial",
   "version": "0.0.0",
   "description": "\"EclipseCon 2016 AngularJS Tutorial \"",
+  "repository": "https://github.com/edgarmueller/econ-2016-ng-tutorial",
+  "license": "MIT",
   "devDependencies": {
     "jasmine-core": "2.4.1",
     "angular-mocks": "1.4.8",
@@ -23,6 +25,7 @@
   },
   "dependencies": {
     "angular": "1.4.8",
-    "angular-resource": "1.4.8"
+    "angular-resource": "1.4.8",
+    "lodash": "4.1.0"
   }
 }

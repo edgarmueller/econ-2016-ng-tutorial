@@ -1,7 +1,7 @@
 /// <reference path='../_references.ts' />
 
-class Artist implements HasId {
+class Artist implements CommonEntity {
 
-    constructor(public name: string, public id?: number) { }
+    constructor(public name: string, public imagePath?: string, public id?: number) { }
 
 }
