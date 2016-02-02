@@ -90,11 +90,11 @@ class AlbumRepository extends InMemoryRepository<Album> {
             1967
         );
 
-        this.entities.create(backToBlack);
-        this.entities.create(dummy);
-        this.entities.create(velvetUnderground);
-        this.entities.create(roxyMusic);
-        this.entities.create(doors);
+        this.create(backToBlack);
+        this.create(dummy);
+        this.create(velvetUnderground);
+        this.create(roxyMusic);
+        this.create(doors);
     }
 }
 
