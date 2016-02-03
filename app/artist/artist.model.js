@@ -1,4 +1,3 @@
-/// <reference path='../_references.ts' />
 var Artist = (function () {
     function Artist(name, imagePath, id) {
         this.name = name;

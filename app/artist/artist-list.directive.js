@@ -1,10 +1,8 @@
-/// <reference path='../_references.ts' />
 var ArtistListDirective = (function () {
     function ArtistListDirective(repo) {
         var _this = this;
         this.repo = repo;
         this.restrict = 'E';
-        // TODO: exercise 2
         this.template = "???";
         this.link = function (scope, element, attributes) {
             scope.artists = _this.repo.all();
