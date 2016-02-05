@@ -45,7 +45,7 @@ describe('The Artist repository', () => {
     it("should allow filtering artists by part of their name", () => {
         artistRepo.fillWithSampleData();
         expect(false).toBeTruthy();
-        //expect(artistRepo.findyName("The").length).toBe(2);
+        //expect(artistRepo.findByName("The").length).toBe(2);
     });
 });
 
