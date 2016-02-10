@@ -8,44 +8,26 @@ describe('The Artist repository', () => {
     beforeEach(angular.mock.module('econTutorial'));
     beforeEach(angular.mock.inject((ArtistRepository) => {
         artistRepo = ArtistRepository;
-        artistRepo.clear();
+        artistRepo.create(new Artist("Amy Winehouse",          "app/images/artist/winehouse.jpg"));
+        artistRepo.create(new Artist("Portishead",             "app/images/artist/portishead.jpg"));
+        artistRepo.create(new Artist("The Velvet Underground", "app/images/artist/the-velvet-underground.jpg"));
+        artistRepo.create(new Artist("Roxy Music",             "app/images/artist/roxy-music.jpg"));
+        artistRepo.create(new Artist("The Doors",              "app/images/artist/the-doors.jpg"));
     }));
 
-    let amy = new Artist("Amy Winehouse");
-
     it("should support creating new artists", () => {
-        artistRepo.create(amy);
-        expect(artistRepo.all().length).toBe(1);
+        artistRepo.create(new Artist("The Streets"));
+        expect(artistRepo.all().length).toBe(6);
     });
 
     it("should support finding artists by their ID", () => {
-        artistRepo.create(amy);
         expect(artistRepo.findById(0)).toBeDefined();
-        expect(artistRepo.findById(1)).toBeUndefined();
-    });
-
-    // FIXME
-    it("should support updating artists", () => {
-        artistRepo.create(amy);
-        let a = artistRepo.findById(0);
-        a.name = "Amy Jade Winehouse";
-        artistRepo.update(amy);
-        expect(artistRepo.findById(0)).toBe("Amy Jade Winehouse");
-    });
-
-
-    // FIXME
-    it("should allow removing artists by their ID", () => {
-        artistRepo.create(amy);
-        expect(artistRepo.removeById(0)).toBeFalsy();
-        expect(artistRepo.all().length).toBe(0);
+        expect(artistRepo.findById(42)).toBeUndefined();
     });
 
     // FIXME implement findByName
     it("should allow filtering artists by part of their name", () => {
-        artistRepo.fillWithSampleData();
-        expect(false).toBeTruthy();
-        //expect(artistRepo.findByName("The").length).toBe(2);
+        expect(artistRepo.findByName("The").length).toBe(2);
     });
 });
 

@@ -11,4 +11,5 @@ interface IRepository<T extends CommonEntity> {
     findById(id: number): T
     create(t: T): void
     removeById(id: number): boolean
+    findByName(name: string): T[]
 }

@@ -16,8 +16,8 @@ abstract class InMemoryRepository<ENTITY extends CommonEntity> implements IRepos
 
     all(): ENTITY[] {
         let result = [];
-        for (let id in this.entities) {
-            result.push(this.entities[id]);
+        for (let entity of this.entities) {
+            result.push(entity);
         }
         return result;
     }
@@ -51,5 +51,10 @@ abstract class InMemoryRepository<ENTITY extends CommonEntity> implements IRepos
             this.entities.splice(index, 1);
             return true;
         }
+    }
+
+    findByName(name: string): ENTITY[] {
+        // FIXME
+        return [];
     }
 }
