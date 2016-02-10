@@ -15,11 +15,7 @@ abstract class InMemoryRepository<ENTITY extends CommonEntity> implements IRepos
     }
 
     all(): ENTITY[] {
-        let result = [];
-        for (let entity of this.entities) {
-            result.push(entity);
-        }
-        return result;
+        return _.clone(this.entities)
     }
 
     update(entity: ENTITY): void {
@@ -28,7 +24,7 @@ abstract class InMemoryRepository<ENTITY extends CommonEntity> implements IRepos
             return;
         } else {
             let index = this.entities.indexOf(foundEntity);
-            this.entities[index] = entity;
+            this.entities[index] = _.clone(entity);
         }
     }
 
