@@ -8,11 +8,12 @@ describe('The Artist repository', () => {
     beforeEach(angular.mock.module('econTutorial'));
     beforeEach(angular.mock.inject((ArtistRepository) => {
         artistRepo = ArtistRepository;
-        artistRepo.create(new Artist("Amy Winehouse",          "app/images/artist/winehouse.jpg"));
-        artistRepo.create(new Artist("Portishead",             "app/images/artist/portishead.jpg"));
+        artistRepo.clear();
+        artistRepo.create(new Artist("Amy Winehouse", "app/images/artist/winehouse.jpg"));
+        artistRepo.create(new Artist("Portishead", "app/images/artist/portishead.jpg"));
         artistRepo.create(new Artist("The Velvet Underground", "app/images/artist/the-velvet-underground.jpg"));
-        artistRepo.create(new Artist("Roxy Music",             "app/images/artist/roxy-music.jpg"));
-        artistRepo.create(new Artist("The Doors",              "app/images/artist/the-doors.jpg"));
+        artistRepo.create(new Artist("Roxy Music", "app/images/artist/roxy-music.jpg"));
+        artistRepo.create(new Artist("The Doors", "app/images/artist/the-doors.jpg"));
     }));
 
     it("should support creating new artists", () => {

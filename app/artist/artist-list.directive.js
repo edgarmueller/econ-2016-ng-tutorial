@@ -1,4 +1,3 @@
-/// <reference path='../_references.ts' />
 var ArtistListDirectiveController = (function () {
     function ArtistListDirectiveController(repo) {
         this.repo = repo;
@@ -12,7 +11,6 @@ var ArtistListDirective = (function () {
         this.restrict = 'E';
         this.controller = 'ArtistListDirectiveController';
         this.controllerAs = 'vm';
-        // FIXME
         this.template = "FIXME";
     }
     return ArtistListDirective;

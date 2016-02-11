@@ -12,3 +12,6 @@ bower_components/
 /application.js
 .project
 app.js
+/app/artist/artist.repository.spec.js
+/app/artist/artist.repository.js
+/app/album/album-list.directive.js
