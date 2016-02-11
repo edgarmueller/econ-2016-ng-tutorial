@@ -21,3 +21,4 @@ app.js
 /app/common/in-memory-repository.js
 /app/common/repository.js
 /app/artist/artist-list.directive.js
+/app/search/search.controller.js

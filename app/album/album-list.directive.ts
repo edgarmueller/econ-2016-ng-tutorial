@@ -5,7 +5,7 @@ class AlbumListDirectiveController {
     static $inject = ['AlbumRepository'];
     constructor(private repo: AlbumRepository) {}
     albums(): Album[] {
-        return this.repo.all().filter(album => album.artistId == this.artistId);
+        return this.repo.getAll().filter(album => album.artistId == this.artistId);
     }
 }
 

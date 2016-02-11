@@ -2,7 +2,7 @@
 
 abstract class InMemoryRepository<ENTITY extends CommonEntity> implements IRepository<ENTITY> {
 
-    protected entities;
+    protected entities: ENTITY[];
     protected currentId = 0;
 
     constructor() {
@@ -14,7 +14,7 @@ abstract class InMemoryRepository<ENTITY extends CommonEntity> implements IRepos
         this.currentId = 0;
     }
 
-    all(): ENTITY[] {
+    getAll(): ENTITY[] {
         return _.clone(this.entities)
     }
 
@@ -29,7 +29,7 @@ abstract class InMemoryRepository<ENTITY extends CommonEntity> implements IRepos
     }
 
     findById(id: number): ENTITY {
-        return this.entities.find(e => e.id == id);
+        return _.find(this.entities, (e) => e.id == id);
     }
 
     create(entity: ENTITY):void {

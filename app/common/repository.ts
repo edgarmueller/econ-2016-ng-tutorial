@@ -14,7 +14,7 @@ interface IRepository<T extends CommonEntity> {
      *
      * @return an array containing all entities
      */
-    all(): T[]
+    getAll(): T[]
 
     /**
      * Updates a entity in the repository.

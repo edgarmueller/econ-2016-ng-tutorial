@@ -18,7 +18,7 @@ describe('The Artist repository', () => {
 
     it("should support creating new artists", () => {
         artistRepo.create(new Artist("The Streets"));
-        expect(artistRepo.all().length).toBe(6);
+        expect(artistRepo.getAll().length).toBe(6);
     });
 
     it("should support finding artists by their ID", () => {

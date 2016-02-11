@@ -22,6 +22,32 @@ angular
             ],
             2006);
 
+        let frank = new Album(0,
+            "Frank",
+            [
+                "Intro",
+                "Stronger Than Me",
+                "You Sent Me Flying",
+                "Cherry",
+                "Know You Now",
+                "Fuck Me Pumps",
+                "I Heard Love Is Blind",
+                "Moody's Mood For Love",
+                "Teo Licks",
+                "(There Is) No Greater Love",
+                "In My Bed",
+                "Take The Box",
+                "October Song",
+                "What Is It About Men?",
+                "Help Yourself",
+                "Amy Amy Amy",
+                "Outro",
+                "Mr. Magic (Through The Smoke)"
+            ],
+            2003
+        );
+
+
         let dummy = new Album(1,
             "Dummy",
             [
@@ -41,6 +67,24 @@ angular
             ],
             1995);
 
+        let portishead = new Album(1,
+            "Portishead",
+            [
+                "Cowboys",
+                "All Mine",
+                "Undenied",
+                "Half Day Closing",
+                "Over",
+                "Humming",
+                "Mourning Air",
+                "Seven Months",
+                "Only You",
+                "Elysium",
+                "Western Eyes"
+            ],
+            1997
+        );
+
         let velvetUnderground = new Album(2,
             "The Velvet Underground & Nico",
             [
@@ -57,6 +101,23 @@ angular
                 "European Son To Delmore Schwartz"
             ],
             1995);
+
+        let loaded = new Album(2,
+            "Loaded",
+            [
+                "Who Loves The Sun",
+                "Sweet Jane",
+                "Rock & Roll",
+                "Cool It Down",
+                "New Age",
+                "Head Held High",
+                "Lonesome Cowboy Bill",
+                "I Found A Reason",
+                "Train Round The Bend",
+                "Oh Sweet Nuthin'"
+            ],
+            1970
+        );
 
         let roxyMusic = new Album(3,
             "Roxy Music",
@@ -93,8 +154,11 @@ angular
         );
 
         repo.create(backToBlack);
+        repo.create(frank);
         repo.create(dummy);
+        repo.create(portishead);
         repo.create(velvetUnderground);
+        repo.create(loaded);
         repo.create(roxyMusic);
         repo.create(doors);
     }]);

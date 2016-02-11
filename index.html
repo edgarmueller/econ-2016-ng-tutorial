@@ -1,13 +1,15 @@
 <!doctype html>
 <html>
-	<head>
-		<script src="node_modules/angular/angular.js"></script>
-		<script src="node_modules/lodash/lodash.js"></script>
-        <script src="node_modules/angular-resource/angular-resource.js"></script>
-		<script src="application.js"></script>
-	</head>
-	<body ng-app="econTutorial">
-	    <h1>Artists</h1>
-	    <artist-list></artist-list>
-    </body>
+<head>
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="node_modules/lodash/lodash.js"></script>
+    <script src="node_modules/angular-resource/angular-resource.js"></script>
+    <script src="application.js"></script>
+</head>
+<body ng-app="econTutorial">
+<div ng-controller="SearchController as searchCtrl">
+    <h1>Artists</h1>
+    <artist-list></artist-list>
+</div>
+</body>
 </html>	
