@@ -3,6 +3,7 @@ logs/*
 node_modules/
 tmp
 .idea
+.tscache
 .DS_Store
 angular-phonecat-snapshots
 bower_components/
@@ -15,3 +16,7 @@ app.js
 /app/artist/artist.repository.spec.js
 /app/artist/artist.repository.js
 /app/album/album-list.directive.js
+/app/_references.js
+/app/common/in-memory-repository.js
+/app/common/repository.js
+/app/artist/artist-list.directive.js
