@@ -1,8 +1,10 @@
 /// <reference path='../_references.ts' />
 
-class AlbumRepository extends InMemoryRepository<Album> {
+class AlbumRepository extends InMemoryRepository<Album> { }
 
-    fillWithSampleData() {
+angular
+    .module('econTutorial').service('AlbumRepository', AlbumRepository)
+    .run(['AlbumRepository', (repo) => {
         let backToBlack = new Album(0,
             "Back to Black",
             [
@@ -90,13 +92,10 @@ class AlbumRepository extends InMemoryRepository<Album> {
             1967
         );
 
-        this.create(backToBlack);
-        this.create(dummy);
-        this.create(velvetUnderground);
-        this.create(roxyMusic);
-        this.create(doors);
-    }
-}
-
-angular.module('econTutorial').service('AlbumRepository', AlbumRepository);
+        repo.create(backToBlack);
+        repo.create(dummy);
+        repo.create(velvetUnderground);
+        repo.create(roxyMusic);
+        repo.create(doors);
+    }]);
 

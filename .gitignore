@@ -12,6 +12,7 @@ bower_components/
 /app/album/album.repository.js
 /application.js
 .project
+/app/artist/artist.model.js
 app.js
 /app/artist/artist.repository.spec.js
 /app/artist/artist.repository.js

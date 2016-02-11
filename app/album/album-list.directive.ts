@@ -9,7 +9,6 @@ class AlbumListDirectiveController {
     }
 }
 
-
 class AlbumListDirective implements ng.IDirective {
 
     restrict = 'E';
@@ -32,14 +31,8 @@ class AlbumListDirective implements ng.IDirective {
     bindToController = {
         'artistId': '='
     };
-
-    constructor(private repo: AlbumRepository) {
-        repo.fillWithSampleData();
-    }
 }
 
 angular.module('econTutorial')
-    .directive('albumList', ['AlbumRepository', (AlbumRepository) => {
-        return new AlbumListDirective(AlbumRepository);
-    }])
+    .directive('albumList', ['AlbumRepository', () => new AlbumListDirective()])
     .controller('AlbumListDirectiveController', AlbumListDirectiveController);
