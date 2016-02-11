@@ -1,21 +1,35 @@
+
 /// <reference path='../_references.ts' />
+
+class ArtistListDirectiveController {
+
+    public artists: Artist[];
+    static $inject = ['ArtistRepository'];
+
+    constructor(private repo: ArtistRepository) {
+        this.artists = this.repo.all();
+    }
+}
 
 class ArtistListDirective implements ng.IDirective {
 
     restrict = 'E';
 
-    // TODO: exercise 2
-    template = `???`;
+    controller = 'ArtistListDirectiveController';
 
-    link = (scope, element, attributes) => {
-        scope.artists = this.repo.all();
-    };
+    controllerAs = 'vm';
 
-    constructor(private repo: ArtistRepository) {
-    }
+    // FIXME
+    template = `FIXME`;
 }
 
 angular.module('econTutorial')
-    .directive('artistList', ['ArtistRepository', (ArtistRepository) => {
-        return new ArtistListDirective(ArtistRepository);
+    .controller('ArtistListDirectiveController', ArtistListDirectiveController)
+    .directive('artistList', () => new ArtistListDirective())
+    .run(['ArtistRepository', (repo) => {
+        repo.create(new Artist("Amy Winehouse", "app/images/artist/winehouse.jpg"));
+        repo.create(new Artist("Portishead", "app/images/artist/portishead.jpg"));
+        repo.create(new Artist("The Velvet Underground", "app/images/artist/the-velvet-underground.jpg"));
+        repo.create(new Artist("Roxy Music", "app/images/artist/roxy-music.jpg"));
+        repo.create(new Artist("The Doors", "app/images/artist/the-doors.jpg"));
     }]);

@@ -8,5 +8,7 @@ angular-phonecat-snapshots
 bower_components/
 *.js.map
 .settings/
+/app/album/album.repository.js
+/application.js
 .project
 app.js

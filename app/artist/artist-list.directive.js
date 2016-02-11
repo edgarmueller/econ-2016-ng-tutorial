@@ -1,17 +1,30 @@
-var ArtistListDirective = (function () {
-    function ArtistListDirective(repo) {
-        var _this = this;
+/// <reference path='../_references.ts' />
+var ArtistListDirectiveController = (function () {
+    function ArtistListDirectiveController(repo) {
         this.repo = repo;
+        this.artists = this.repo.all();
+    }
+    ArtistListDirectiveController.$inject = ['ArtistRepository'];
+    return ArtistListDirectiveController;
+})();
+var ArtistListDirective = (function () {
+    function ArtistListDirective() {
         this.restrict = 'E';
-        this.template = "???";
-        this.link = function (scope, element, attributes) {
-            scope.artists = _this.repo.all();
-        };
+        this.controller = 'ArtistListDirectiveController';
+        this.controllerAs = 'vm';
+        // FIXME
+        this.template = "FIXME";
     }
     return ArtistListDirective;
 })();
 angular.module('econTutorial')
-    .directive('artistList', ['ArtistRepository', function (ArtistRepository) {
-        return new ArtistListDirective(ArtistRepository);
+    .controller('ArtistListDirectiveController', ArtistListDirectiveController)
+    .directive('artistList', function () { return new ArtistListDirective(); })
+    .run(['ArtistRepository', function (repo) {
+        repo.create(new Artist("Amy Winehouse", "app/images/artist/winehouse.jpg"));
+        repo.create(new Artist("Portishead", "app/images/artist/portishead.jpg"));
+        repo.create(new Artist("The Velvet Underground", "app/images/artist/the-velvet-underground.jpg"));
+        repo.create(new Artist("Roxy Music", "app/images/artist/roxy-music.jpg"));
+        repo.create(new Artist("The Doors", "app/images/artist/the-doors.jpg"));
     }]);
 //# sourceMappingURL=artist-list.directive.js.map
