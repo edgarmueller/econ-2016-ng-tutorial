@@ -1,44 +1,17 @@
 module.exports = function(grunt) {
 
-    // TODO: let stefan review this
-
-    // Project configuration.
+    // Configuration for all grunt tasks.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
-        // Config for Concat Task
-        concat: {
-            options: {
-                // Remove all existing banners
-                stripBanners: true,
-
-                // Replace all 'use strict' statements in the code with a single one at the top
-                process: function(src, filepath) {
-                    return '// Source: ' + filepath + '\n' +
-                        src.replace(/(^|\n)[ \t]*('use strict'|"use strict");?\s*/g, '$1');
-                },
-
-                // Add new banner on top of generated file
-                banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
-                '<%= grunt.template.today("yyyy-mm-dd") %> Copyright (c) EclipseSource Muenchen GmbH and others. */ \n' +
-                "'use strict';\n"
-            },
-            dist: {
-                // Concat all files from components directory and include the embedded templates
-                src: ['app/**/*.js'],
-                filter: 'isFile',
-                dest: 'app.js'
-            }
-        },
-
+        // Config for Typescript Compiler
         ts: {
-            dist: {
-                src: ['app/**/*.ts', '!app/**/*.spec.ts'], //'typings/**/*.ts']],
+            app: {
+                src: ['app/**/*.ts', '!app/**/*.spec.ts', 'typings/**/*.ts'],
                 out: 'application.js',
-                //reference: 'app/_references.ts',
+                reference: 'app/_references.ts',
                 options: {
                     target: 'es5',
-                    module: 'commonjs',
                     sourceMap: true,
                     declaration: false
                 }
@@ -46,22 +19,11 @@ module.exports = function(grunt) {
             test: {
                 src: ['app/**/*.spec.ts'],
                 dest: '',
-                //reference: 'app/_references.ts',
                 options: {
                     target: 'es5',
-                    module: 'commonjs',
                     sourceMap: true,
                     declaration: false
                 }
-            }
-        },
-
-        copy: {
-            app: {
-                files: [
-                    // dist to app
-                    {expand:true, cwd: 'dist/', src: ['**'], dest: 'app'}
-                ]
             }
         },
 
@@ -69,7 +31,13 @@ module.exports = function(grunt) {
         karma: {
             unit: {
                 configFile: 'karma.conf.js',
-                singleRun: true
+                singleRun: true,
+                autoWatch: false
+            },
+            continuous: {
+                configFile: 'karma.conf.js',
+                singleRun: false,
+                autoWatch: true
             }
         },
 
@@ -77,104 +45,77 @@ module.exports = function(grunt) {
         connect: {
             server: {
                 options: {
-                    port: 8000,
+                    hostname: 'localhost',
+                    port: 8080,
                     base: 'app'
                 }
             }
         },
 
+        // Config for Watch Task
         watch: {
-            js: {
-                files: 'components/**',
-                tasks: ['concat:dist']
+            // Whenever an application Typescript file is modified, re-build the application
+            app: {
+                files: ['app/**/*.ts', '!app/_references.ts'],
+                tasks: ['ts:app'],
+                options: {
+                    atBegin: true
+                }
             },
-            templates: {
-                files: 'templates/**',
-                tasks: ['ngtemplates:dist', "concat:dist", 'uglify:dist']
-            },
-            examples: {
-                files: ['dist/**'],
-                tasks: ['copy:app']
+            dev: {
+                files: ['app/**/*.ts', '!app/_references.ts'],
+                tasks: ['ts:app', 'ts:test', 'karma:unit'],
+                options: {
+                    atBegin: true
+                }
             }
         },
 
+        // Config for Clean Task
         clean: {
-            dist: [
-                'dist/**',
-                'temp/**'
-            ],
-            examples: [
-                'app/js/jsonforms*',
-                'app/css/jsonforms*'
-            ],
-            dev: [
-                'components/references.ts',
-                'components/**/*.js',
-                'components/**/*.js.map',
-                'tests/references.ts',
-                'tests/**/*.js',
-                '!**/*.conf.js',
-                'tests/**/*.js.map'
-            ],
-            downloads: [
-                'app/bower_components',
-                'node_modules'
-            ],
-            coverage: [
-                'coverage'
+            app: [
+                'app/**/*.js',
+                'app/**/*.js.map'
             ],
             cache: [
                 '.tscache'
             ],
             all: [
-                'dist',
-                'temp',
-                'app/js/jsonforms*',
-                'app/css/jsonforms*',
-                'components/references.ts',
-                'components/**/*.js',
-                'components/**/*.js.map',
-                'tests/references.ts',
-                'tests/**/*.js',
-                '!**/*.conf.js',
-                'tests/**/*.js.map',
-                'app/bower_components',
-                'node_modules',
-                'coverage',
+                'app/**/*.js',
+                'app/**/*.js.map',
                 '.tscache'
             ]
         }
     });
 
-    // Load the plugin that provides the "concat" task.
+    // Load all necessary plugins
     grunt.loadNpmTasks('grunt-contrib-concat');
-
-    grunt.loadNpmTasks('grunt-contrib-copy');
-
-    // clean
     grunt.loadNpmTasks('grunt-contrib-clean');
-
-    // Load the plugin that provides the "karma" task.
     grunt.loadNpmTasks('grunt-karma');
-
-    // Load the plugin that provides the "connect" task.
-    grunt.loadNpmTasks('grunt-contrib-connect');
-
     grunt.loadNpmTasks('grunt-contrib-watch');
-
     grunt.loadNpmTasks('grunt-ts');
-    // Build distribution
+
+
+    // Build application files
     grunt.registerTask('dist', [
-        //'clean:dist',
-        'ts:dist'
+        'ts:app'
     ]);
 
-    // Test unit and e2e tests
+    // Build application and run a single test
     grunt.registerTask('test', [
         'dist',
-        'ts:test',
-        'karma',
-        'connect'
+        'ts:app',
+        'karma:unit'
+    ]);
+
+    // Watch task (rebuilds application whenever a Typescript file changes)
+    grunt.registerTask('dev', [
+        'watch:app'
+    ]);
+
+    // Watch task (rebuilds application and runs tests whenever a Typescript file changes)
+    grunt.registerTask('devwithtest', [
+        'watch:dev'
     ]);
 
     // Build distribution as default
