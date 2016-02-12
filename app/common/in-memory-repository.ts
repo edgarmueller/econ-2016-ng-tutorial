@@ -29,7 +29,7 @@ abstract class InMemoryRepository<ENTITY extends CommonEntity> implements IRepos
     }
 
     findById(id: number): ENTITY {
-        return _.find(this.entities, (e) => e.id == id);
+        return _.clone(_.find(this.entities, (e) => e.id == id));
     }
 
     create(entity: ENTITY):void {
@@ -43,8 +43,7 @@ abstract class InMemoryRepository<ENTITY extends CommonEntity> implements IRepos
         if (foundEntity == undefined) {
             return false;
         } else {
-            let index = this.entities.indexOf(foundEntity);
-            this.entities.splice(index, 1);
+            this.entities = _.remove(this.entities, e => e.id == id);            
             return true;
         }
     }
