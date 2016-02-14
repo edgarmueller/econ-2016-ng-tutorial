@@ -1,3 +1,3 @@
 /// <reference path='_references.ts' />
 
-angular.module('econTutorial', ['ngResource']);
+angular.module('econTutorial', []);

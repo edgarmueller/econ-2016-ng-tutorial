@@ -1,25 +1,24 @@
 /// <reference path='../_references.ts' />
 
 class AlbumListDirectiveController {
-    public artistId;
-    static $inject = ['AlbumRepository'];
+    public artistId: number;
     constructor(private repo: AlbumRepository) {}
-    albums(): Album[] {
+    getAlbums(): Album[] {
         return this.repo.getAll().filter(album => album.artistId == this.artistId);
     }
 }
 
 class AlbumListDirective implements ng.IDirective {
 
-    restrict = 'E';
+    restrict: string = 'E';
 
     // to reference the controller's properties in the template
-    controllerAs = 'vm';
+    controllerAs: string = 'vm';
 
     // type refinement, otherwise we'll get an compile error in the constructor while assigning the controller
     controller = 'AlbumListDirectiveController';
 
-    template = `<div ng-repeat="album in vm.albums()">
+    template: string = `<div ng-repeat="album in vm.getAlbums()">
       <h2>{{album.name}}</h2>
       <ol>
         <li ng-repeat="track in album.tracks">
@@ -28,11 +27,12 @@ class AlbumListDirective implements ng.IDirective {
       </ol>
     </div>`;
 
-    bindToController = {
-        'artistId': '='
+    bindToController: Object = {
+        'artistId': '@'
     };
 }
 
 angular.module('econTutorial')
     .directive('albumList', ['AlbumRepository', () => new AlbumListDirective()])
-    .controller('AlbumListDirectiveController', AlbumListDirectiveController);
+    .controller('AlbumListDirectiveController', ['AlbumRepository', (albumRepo: AlbumRepository) =>
+        new AlbumListDirectiveController(albumRepo)]);

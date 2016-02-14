@@ -5,21 +5,21 @@ class ArtistListDirectiveController {
 
     constructor(private repo: ArtistRepository) { }
 
-    getArtists() {
+    getArtists(): Artist[] {
         return this.repo.getAll();
     }
 }
 
 class ArtistListDirective implements ng.IDirective {
 
-    restrict = 'E';
+    restrict: string = 'E';
 
-    controller = 'ArtistListDirectiveController';
+    controller: string = 'ArtistListDirectiveController';
 
-    controllerAs = 'vm';
+    controllerAs: string = 'vm';
 
     // FIXME
-    template = `FIXME`;
+    template: string = `FIXME`;
 }
 
 angular.module('econTutorial')

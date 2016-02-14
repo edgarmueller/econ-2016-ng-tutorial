@@ -31,16 +31,9 @@
 		<nature>com.axmor.eclipse.typescript.builder.typescriptNature</nature>
 		<nature>com.palantir.typescript.typeScriptNature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>std-lib</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-	</linkedResources>
 	<filteredResources>
 		<filter>
-			<id>1455273883807</id>
+			<id>1455287492098</id>
 			<name></name>
 			<type>22</type>
 			<matcher>
@@ -49,7 +42,7 @@
 			</matcher>
 		</filter>
 		<filter>
-			<id>1455273883810</id>
+			<id>1455287492102</id>
 			<name></name>
 			<type>22</type>
 			<matcher>
@@ -58,7 +51,7 @@
 			</matcher>
 		</filter>
 		<filter>
-			<id>1455273884320</id>
+			<id>1455287492110</id>
 			<name></name>
 			<type>10</type>
 			<matcher>
