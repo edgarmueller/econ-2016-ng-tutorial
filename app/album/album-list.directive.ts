@@ -29,7 +29,7 @@ class AlbumListDirective implements ng.IDirective {
     </div>`;
 
     bindToController: Object = {
-        'artistId': '='
+        'artistId': '@'
     };
 }
 
