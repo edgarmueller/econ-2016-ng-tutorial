@@ -2,7 +2,6 @@
 
 class AlbumListDirectiveController {
     public artistId: number;
-    static $inject = ['AlbumRepository'];
     constructor(private repo: AlbumRepository) {}
     getAlbums(): Album[] {
         return this.repo.getAll().filter(album => album.artistId == this.artistId);
@@ -35,4 +34,5 @@ class AlbumListDirective implements ng.IDirective {
 
 angular.module('econTutorial')
     .directive('albumList', ['AlbumRepository', () => new AlbumListDirective()])
-    .controller('AlbumListDirectiveController', AlbumListDirectiveController);
+    .controller('AlbumListDirectiveController', ['AlbumRepository', (albumRepo: AlbumRepository) =>
+        new AlbumListDirectiveController(albumRepo)]);
