@@ -3,8 +3,6 @@
 
 class ArtistListDirectiveController {
 
-    static $inject = ['ArtistRepository'];
-
     constructor(private repo: ArtistRepository) { }
 
     getArtists() {
@@ -25,6 +23,7 @@ class ArtistListDirective implements ng.IDirective {
 }
 
 angular.module('econTutorial')
-    .controller('ArtistListDirectiveController', ArtistListDirectiveController)
+    .controller('ArtistListDirectiveController', ['ArtistRepository', (artistRepo: ArtistRepository) => 
+        new ArtistListDirectiveController(artistRepo)])
     .directive('artistList', () => new ArtistListDirective());
 
