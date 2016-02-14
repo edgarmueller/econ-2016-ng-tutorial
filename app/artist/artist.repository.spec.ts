@@ -26,7 +26,7 @@ describe('The Artist repository', () => {
         expect(artistRepo.findById(42)).toBeUndefined();
     });
 
-    // FIXME implement findByName
+    // FIXME: Properly implement findByName in InMemoryRepository class
     it("should allow filtering artists by part of their name", () => {
         expect(artistRepo.findByName("The").length).toBe(2);
     });
