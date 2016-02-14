@@ -29,6 +29,9 @@ describe('The Artist repository', () => {
     // FIXME implement findByName
     it("should allow filtering artists by part of their name", () => {
         expect(artistRepo.findByName("The").length).toBe(2);
+        expect(artistRepo.findByName(undefined).length).toBe(5);
+        expect(artistRepo.findByName("").length).toBe(5);
     });
+
 });
 
