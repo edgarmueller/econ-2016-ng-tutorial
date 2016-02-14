@@ -49,6 +49,13 @@ abstract class InMemoryRepository<ENTITY extends CommonEntity> implements IRepos
         }
     }
 
+    /**
+     * Finds all entities with a name containing the given search string. 
+     * Returns all entities, if the search string is empty or undefined.
+     *
+     * @param name a name to be searched for, or undefined to return all entities
+     * @return an array of entities with a name containing the given search string
+     */
     findByName(name: string): ENTITY[] {
         // FIXME
         return [];

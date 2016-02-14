@@ -45,11 +45,12 @@ interface IRepository<T extends CommonEntity> {
      */
     removeById(id: number): boolean
 
-    /**
-     * Finds all entities that whose names contain the given search string.
+     /**
+     * Finds all entities with a name containing the given search string. 
+     * Returns all entities, if the search string is empty or undefined.
      *
-     * @param name a name to be searched for
-     * @return an array of entities whose names contain the given search string
+     * @param name a name to be searched for, or undefined to return all entities
+     * @return an array of entities with a name containing the given search string
      */
     findByName(name: string): T[]
 }
