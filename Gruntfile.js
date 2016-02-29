@@ -89,7 +89,6 @@ module.exports = function(grunt) {
     });
 
     // Load all necessary plugins
-    grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-karma');
     grunt.loadNpmTasks('grunt-contrib-watch');
