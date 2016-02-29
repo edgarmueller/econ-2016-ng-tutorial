@@ -103,7 +103,7 @@ module.exports = function(grunt) {
     // Build application and run a single test
     grunt.registerTask('test', [
         'dist',
-        'ts:app',
+        'ts:test',
         'karma:unit'
     ]);
 
