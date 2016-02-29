@@ -89,7 +89,6 @@ module.exports = function(grunt) {
     });
 
     // Load all necessary plugins
-    grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-karma');
     grunt.loadNpmTasks('grunt-contrib-watch');
@@ -104,7 +103,7 @@ module.exports = function(grunt) {
     // Build application and run a single test
     grunt.registerTask('test', [
         'dist',
-        'ts:app',
+        'ts:test',
         'karma:unit'
     ]);
 

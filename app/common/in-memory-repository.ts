@@ -1,4 +1,4 @@
-/// <reference path='../_references.ts' />
+/// <reference path="../_references.ts" />
 
 abstract class InMemoryRepository<ENTITY extends CommonEntity> implements IRepository<ENTITY> {
 
