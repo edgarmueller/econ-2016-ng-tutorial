@@ -1,24 +1,24 @@
+# Logs
 logs/*
-!.gitkeep
+
+# Node Dependencies
 node_modules/
+
+# Temporary Files
 tmp
-.idea
 .tscache
+
+# Mac
 .DS_Store
-angular-phonecat-snapshots
-bower_components/
-*.js.map
+
+# Eclipse
 .settings/
-/app/album/album.repository.js
-/application.js
 .project
-/app/artist/artist.model.js
-app.js
-/app/artist/artist.repository.spec.js
-/app/artist/artist.repository.js
-/app/album/album-list.directive.js
-/app/_references.js
-/app/common/in-memory-repository.js
-/app/common/repository.js
-/app/artist/artist-list.directive.js
-/app/search/search.controller.js
+
+# Webstorm
+.idea
+
+# Generated Files
+*.js.map
+/application.js
+/app/**/*.js
